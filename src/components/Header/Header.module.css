@@ -1,0 +1,29 @@
+
+
+.imagecontainer {
+    width: 2em;
+}
+
+.sectionContainer {
+   
+    margin-top: -2em;
+    overflow: hidden;
+    height: 35em;
+    
+}
+
+.headerTitle {
+    color: #fff;
+    font-size: 5em;
+}
+
+
+
+@media screen and (max-width: 555px) { 
+    .headerTitle {
+        
+        font-size: 3em;
+    }
+}
+
+

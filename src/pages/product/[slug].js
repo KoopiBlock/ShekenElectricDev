@@ -24,10 +24,10 @@ export default function ProductPage({ product }) {
     const [activeImage, setActiveImage] = useState('')
 
     
-    const prodImgs = product.images.map((image) => (image.node.src))
+    const prodImgs = product?.images?.map((image) => (image.node.src))
 
     const [index, setIndex] = useState(0)
-    const [activeMobileImage, setActiveMobileImage] = useState(prodImgs[0])
+    const [activeMobileImage, setActiveMobileImage] = useState('')
 
     const handleImageChangeInc = () => {
       setIndex( index + 1)

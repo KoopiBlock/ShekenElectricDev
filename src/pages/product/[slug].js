@@ -1,12 +1,16 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../../styles/ProductPage.module.css'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react';
+import { Carousel } from 'react-responsive-carousel'
 
 
 import { FaShippingFast } from 'react-icons/fa'
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { GoPackage } from 'react-icons/go'
+
 
 
 
@@ -14,10 +18,33 @@ import { GoPackage } from 'react-icons/go'
 export default function ProductPage({ product }) {
     const [screenWidth, setScreenWidth] = useState(0)
     const [isMobile, setIsMobile] = useState(false)
+    const [isTiny, setIsTiny] = useState(false)
+    // yes im that lazy
+    const [isTablet, setIsTablet] = useState(false)
     const [activeImage, setActiveImage] = useState('')
 
     
+    const prodImgs = product.images.map((image) => (image.node.src))
 
+    const [index, setIndex] = useState(0)
+    const [activeMobileImage, setActiveMobileImage] = useState(prodImgs[0])
+
+    const handleImageChangeInc = () => {
+      setIndex( index + 1)
+      if (index > prodImgs.length - 1 ) {
+        setIndex(prodImgs.length- 2)
+      }
+      setActiveMobileImage(prodImgs[index])
+    }
+
+    const handleImageChangeDec = () => {
+      setIndex( index - 1)
+      if (index <= 0 ) {
+        setIndex(prodImgs.length- 1)
+      }
+      setActiveMobileImage(prodImgs[index])
+    }
+    
      
     useEffect(() => {
       function watchWidth()  {     
@@ -32,12 +59,19 @@ export default function ProductPage({ product }) {
    useEffect(() => {
 
        function mobileScreen() {
-           if (screenWidth < 690)  {
+           if (screenWidth < 777)  {
                setIsMobile(true)
+               setIsTablet(false)
                
           
-            }   else {
+            } else if ((screenWidth < 1000)) {
+                setIsTablet(true)
+                setIsMobile(false)
+              
+
+            }  else {
                setIsMobile(false)
+               setIsTablet(false)
                
            }
        }
@@ -102,31 +136,65 @@ export default function ProductPage({ product }) {
     console.log(images)
   
     return (
+    <>
+     <div className={styles.backLinkCont}>
+      <Link href={`/`}>
+          <p className={styles.backLink}><AiOutlineArrowLeft className={styles.backLinkIcon} />חזרה לדף הבית</p>
+      </Link>
+      </div>
       <div className={styles.productSec}>
         <div className={styles.productImgs}>         
             <div className={styles.imagesConatiner}>
-              <div className={styles.mainImageCont}>
-                <Image 
-                    src={activeImage ? (activeImage) : (imageSrc)}
-                    alt={activeImage ? (activeImage) : (imageSrc)}
-                    width={isMobile ? 200 : 450}
-                    height={isMobile ? 200 : 450}
-                    className={styles.mainImage}
-                    />
-              </div>
-              <div className={styles.tinyImagesCont}>
-                {images?.map((image, i) => (
-                  <div className={styles.tinyImage} key={i}>
-                    <Image 
-                      src={image.node.src}
-                      alt={image.node.src}
-                      width={isMobile ? 50 : 150}
-                      height={isMobile ? 50 : 150}
-                      onClick={() => handleImage(image.node.src)}
-                    />           
+              
+              { isMobile ? (
+                <>
+                <div className={styles.mobileSlideCont}>
+                  <div className={styles.mobileSlideArrowCont}>
+                    <AiOutlineArrowLeft onClick={handleImageChangeDec}/>
                   </div>
-                ))}
-              </div>
+                  <div className={styles.mainImageCont}>
+                    <Image 
+                      src={activeMobileImage ? (activeMobileImage) : (imageSrc)}
+                      alt={activeMobileImage ? (activeMobileImage) : (imageSrc)}
+                      width={isTiny ? 500 : 300}
+                      height={isTiny ? 500 : 300}
+                      className={styles.mainImage}
+                      
+                    />
+                  </div>
+                  <div className={styles.mobileSlideArrowCont}>
+                    <AiOutlineArrowRight onClick={handleImageChangeInc}/>
+                  </div>
+                </div>  
+                </>
+              ) : (
+                <>
+                  <div className={styles.mainImageCont}>
+                      <Image 
+                        src={activeImage ? (activeImage) : (imageSrc)}
+                        alt={activeImage ? (activeImage) : (imageSrc)}
+                        width={isTablet ? 400 : 450}
+                        height={isTablet ? 400 : 450}
+                        className={styles.mainImage}
+                    />
+                  </div>
+                  <div className={styles.tinyImagesCont}>
+                  {images?.map((image, i) => (
+                    <div className={styles.tinyImage} key={i}>
+                      <Image 
+                        src={image.node.src}
+                        alt={image.node.src}
+                        width={isTablet ? 100 : 150}
+                        height={isTablet ? 100 : 150}
+                        onClick={() => handleImage(image.node.src)}
+                        onMouseOver={() => handleImage(image.node.src)}
+                      />           
+                    </div>
+                  ))}
+                </div>
+              </>
+              )}
+              
             </div>
         </div>
         <div className={styles.productCont}>
@@ -153,7 +221,9 @@ export default function ProductPage({ product }) {
           </div>
         </div>     
       </div>
+    </>
     );
+    
   }
 
     

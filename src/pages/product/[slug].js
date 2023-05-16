@@ -5,6 +5,10 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react';
 
 
+import { FaShippingFast } from 'react-icons/fa'
+import { GoPackage } from 'react-icons/go'
+
+
 
 
 export default function ProductPage({ product }) {

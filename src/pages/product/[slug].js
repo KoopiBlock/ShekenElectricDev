@@ -130,18 +130,22 @@ export default function ProductPage({ product }) {
           <p className={styles.productDesc}>{description}</p>
           <p className={styles.productPrice}>{formattedPrice.format(price)}</p>
           <div className={styles.ctaContainer}>
-            <motion.p className={styles.ctaLink2} onClick={addToCart}
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.2 }}                        
-            >
-              קנה עכשיו
-            </motion.p>
             <motion.p className={styles.ctaLink} onClick={addToCart}
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.2 }}                        
             >
               הוסף לסלסלה
             </motion.p>
+          </div>
+          <div className={styles.shippings}>
+            <div className={styles.shippingCont}>
+              <GoPackage className={styles.shipIcon}/>
+              <p className={styles.shipText}>משלוח עד לבית</p>
+            </div>
+            <div className={styles.shippingCont}>
+              <FaShippingFast className={styles.shipIcon}/>
+              <p className={styles.shipText}>משלוח עד לבית</p>
+            </div>
           </div>
         </div>     
       </div>

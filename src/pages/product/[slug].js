@@ -126,7 +126,7 @@ export default function ProductPage({ product }) {
 
     }
 
-    function ProductDisplay({slug, imageSrc, imageAlt, title, description, price, images }) {
+    function ProductDisplay({slug, imageSrc, imageAlt, title, description, price, images, variantId }) {
 
       const formattedPrice = new Intl.NumberFormat('en-US', {
       style: 'currency',

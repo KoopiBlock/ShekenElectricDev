@@ -95,7 +95,7 @@ export default function ProductPage({ product }) {
 
 
     // to abstaract it out
-      const addToCart = async () => {
+      const addToCart = async (variantId) => {
 
         let localCartData = JSON.parse(
           window.localStorage.getItem('koopiBlock:shopify:cart')
@@ -109,9 +109,9 @@ export default function ProductPage({ product }) {
         }
 
         console.log(localCartData.cartId)
-        console.log(product.variantId)
+        console.log(variantId)
 
-         const result = await fetch(`http://localhost:3000/api/add-to-cart?cartId=${localCartData.cartId}&variantId=${product.variantId}`, {
+         const result = await fetch(`http://localhost:3000/api/add-to-cart?cartId=${localCartData.cartId}&variantId=${variantId}`, {
            method: 'POST', 
          })
 
@@ -202,7 +202,7 @@ export default function ProductPage({ product }) {
           <p className={styles.productDesc}>{description}</p>
           <p className={styles.productPrice}>{formattedPrice.format(price)}</p>
           <div className={styles.ctaContainer}>
-            <motion.p className={styles.ctaLink} onClick={addToCart}
+            <motion.p className={styles.ctaLink} onClick={addToCart(variantId)}
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.2 }}                        
             >

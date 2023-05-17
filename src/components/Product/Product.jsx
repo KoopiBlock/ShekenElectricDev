@@ -16,7 +16,7 @@ const Product = ({ product }) => {
 
 
     // to abstaract it out
-      const addToCart = async () => {
+      const addToCart = async (variantId) => {
 
         let localCartData = JSON.parse(
           window.localStorage.getItem('koopiBlock:shopify:cart')
@@ -34,7 +34,7 @@ const Product = ({ product }) => {
         console.log(localCartData.cartId)
         console.log(product.variantId)
 
-         const result = await fetch(`/api/add-to-cart?cartId=${localCartData.cartId}&variantId=${product.variantId}`, {
+         const result = await fetch(`/api/add-to-cart?cartId=${localCartData.cartId}&variantId=${variantId}`, {
            method: 'POST', 
          })
 
@@ -58,7 +58,7 @@ const Product = ({ product }) => {
         <p className={styles.price}>{formattedPrice.format(product.price)}</p>
       </Link>
       <div className={styles.ctaContainer}>     
-        <motion.p className={styles.ctaLink} onClick={addToCart}
+        <motion.p className={styles.ctaLink} onClick={addToCart(product.variantId)}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.2 }}                        
         >

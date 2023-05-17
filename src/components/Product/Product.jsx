@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const Product = ({ product }) => {
 
-    console.log(product)
+    console.log(product.variantId)
 
     const formattedPrice = new Intl.NumberFormat('en-US', {
         style: 'currency',

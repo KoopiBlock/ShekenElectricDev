@@ -40,7 +40,7 @@ export default async function handler(_req, res) {
      const  realProductId  = `gid://shopify/ProductVariant/${ProductNum}`
 
     console.log(cartId, variantId)
-    console.log(realCartId, realProductId)
+    
 
 
     const data = await postToShopify({

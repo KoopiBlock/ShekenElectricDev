@@ -33,6 +33,7 @@ export default async function handler(_req, res) {
                             variants(first: 1) {
                             edges {
                                 node {
+                                id
                                 priceV2 {
                                     amount
                                     currencyCode
@@ -63,6 +64,7 @@ export default async function handler(_req, res) {
                 description: node.descriptionHtml,
                 products: node.products.edges.map(({ node: product }) => ({
                     id: product.id,
+                    variantId: product.variants.edges[0]?.node?.id,
                     title: product.title,
                     description: product.description,
                     imageSrc: product.images.edges[0]?.node?.src ?? '/placeholder-image.jpg',

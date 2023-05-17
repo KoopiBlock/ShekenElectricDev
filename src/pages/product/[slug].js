@@ -202,7 +202,7 @@ export default function ProductPage({ product }) {
           <p className={styles.productDesc}>{description}</p>
           <p className={styles.productPrice}>{formattedPrice.format(price)}</p>
           <div className={styles.ctaContainer}>
-            <motion.p className={styles.ctaLink} onClick={addToCart(variantId)}
+            <motion.p className={styles.ctaLink} onClick={() => addToCart(variantId)}
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.2 }}                        
             >

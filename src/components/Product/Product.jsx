@@ -58,7 +58,7 @@ const Product = ({ product }) => {
         <p className={styles.price}>{formattedPrice.format(product.price)}</p>
       </Link>
       <div className={styles.ctaContainer}>     
-        <motion.p className={styles.ctaLink} onClick={addToCart(product.variantId)}
+        <motion.p className={styles.ctaLink} onClick={() => addToCart(product.variantId)}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.2 }}                        
         >

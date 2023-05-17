@@ -18,7 +18,7 @@ export async function getServerSideProps() {
     console.error(cartRes);
     return { props: {} };
   }
-
+   // please jus work
   const cartData = await cartRes.json();
 
   const url3 = new URL(process.env.URL || 'http://localhost:3000');

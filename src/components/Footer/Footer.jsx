@@ -1,9 +1,6 @@
 import React from 'react'
-import { FaYoutube } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaTiktok } from "react-icons/fa";
+import { FaYoutube, FaFacebookF, FaInstagram, FaTwitter,FaTiktok } from "react-icons/fa";
+import { AiOutlineMail, AiOutlineWhatsApp } from "react-icons/ai";
 
 import styles from './Footer.module.css';
 
@@ -11,17 +8,23 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
         <div className={styles.supportCont}>
-            <h1 className={styles.supporTitle}>Customer support</h1>
+            <h1 className={styles.supporTitle}>פרטי התקשרות</h1>
             <div className={styles.LinksCont}>
-                <p className={styles.supLinks}>Email: example@domain</p>
-                <p className={styles.supLinks}>Whatsapp: 97278438473</p>
+                <div className={styles.SupContainer}>
+                    <AiOutlineMail className={styles.SupIcon}/>
+                    <p className={styles.supLinks}>shekemElectirc@shopify.com</p>
+                </div>
+                <div className={styles.SupContainer}>
+                    <AiOutlineWhatsApp className={styles.SupIcon}/>
+                    <p className={styles.supLinks}>+972-784-384-733</p>
+                </div>
             </div>
         </div>
 
 
         <div className={styles.row}>
             <p className={styles.socialTitle}>
-                Follow us for More
+                עקבו אחרינו ברשתות
             </p>
         </div>
         <div className={styles.footDiv}>
@@ -33,12 +36,6 @@ const Footer = () => {
             </a>
             <a href="https://facebook.com" rel="noreferrer">
                 <FaFacebookF className={styles.logo} />
-            </a>
-            <a href="https://twitter.com" rel="noreferrer">
-                <FaTwitter className={styles.logo} />
-            </a>
-            <a href="https://tiktok.com" rel="noreferrer">
-                <FaTiktok className={styles.logo} />
             </a>
         </div>
 

@@ -12,7 +12,7 @@ import {
 import styles from './Navbar.module.css'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, delay } from 'framer-motion'
-import Cart from '../Cart/Cart'
+import mainLogo from '../../../public/shekemLight.png'
  
 const Navbar = () => {
 
@@ -254,7 +254,14 @@ const Navbar = () => {
         </div>        
         <div className={styles.logoContainer}>  
           <h3 className={styles.logo}>
-            <Link href="/" className={styles.logoLink} onClick={menuClose} >KOOPI BLOCKS</Link>
+            <Link href="/" className={styles.logoLink} onClick={menuClose} >
+              <Image 
+                src={mainLogo.src}
+                alt={'hello there'}
+                width={isMobile ? 100 : 180}
+                height={isMobile ? 50 : 80}
+              />
+            </Link>
           </h3>
         </div>
         { isMobile ? 

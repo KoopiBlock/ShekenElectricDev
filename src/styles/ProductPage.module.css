@@ -31,7 +31,19 @@
 }
 
 .productDesc {
-    font-size: 1.5em;
+    font-size: 1.3em;
+}
+.priceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+.maham {
+    font-weight: 700;
+    margin-top: 1.5em;
+    margin-right: 1em;
 }
 
 .productPrice {

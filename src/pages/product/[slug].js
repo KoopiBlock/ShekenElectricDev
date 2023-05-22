@@ -126,14 +126,14 @@ export default function ProductPage({ product }) {
 
     }
 
-    function ProductDisplay({slug, imageSrc, imageAlt, title, description, price, images, variantId }) {
+    function ProductDisplay({slug, imageSrc, imageAlt, title, description, descriptionHtml, price, images, variantId }) {
 
       const formattedPrice = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
     });
 
-    console.log(images)
+    console.log(descriptionHtml)
   
     return (
     <>
@@ -199,8 +199,13 @@ export default function ProductPage({ product }) {
         </div>
         <div className={styles.productCont}>
           <h2 className={styles.productTitle}>{title}</h2>
-          <p className={styles.productDesc}>{description}</p>
-          <p className={styles.productPrice}>{formattedPrice.format(price)}</p>
+          <div className={styles.priceContainer}>
+            <p className={styles.maham}> כולל מע"מ</p>
+            <p className={styles.productPrice}>{formattedPrice.format(price)}</p>
+          </div>
+          <div className={styles.productDesc}>
+           <div dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+          </div>
           <div className={styles.ctaContainer}>
             <motion.p className={styles.ctaLink} onClick={() => addToCart(variantId)}
               whileTap={{ scale: 0.9 }}
@@ -261,6 +266,7 @@ export async function getStaticPaths() {
     const data = await res.json();
 
     console.log('yeeet',data.products.edges.map(({ node }) => `/product/${node.handle}`))
+    
 
     return {
         paths: data.products.edges.map(({ node }) => `/product/${node.handle}`),
@@ -294,6 +300,7 @@ export async function getStaticProps({ params }) {
                 id: node.id,
                 title: node.title,
                 description: node.description,
+                descriptionHtml: node.descriptionHtml,
                 images: node.images.edges,
                 imageSrc: node.images.edges[0].node.src,
                 imageAlt: node.title,

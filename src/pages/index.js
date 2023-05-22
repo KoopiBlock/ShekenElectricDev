@@ -1,5 +1,5 @@
 import Head from 'next/head'
-
+import shuffle from 'lodash.shuffle'
 import styles from '../styles/Home.module.css'
 
 import {Product, Header } from '@/components';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 export async function getServerSideProps() {
 
   // to be changed, we dont want this to be seen in client side
+  //aka move to utils lol
 
   const url2 = new URL(process.env.URL || 'http://localhost:3000');
   url2.pathname = '/api/create-cart';
@@ -54,6 +55,8 @@ export default function Home({categories}) {
 
   const selectedCategory = categories.find((category) => category.id === categoryId);
 
+  const shuffledProducts = shuffle(selectedCategory.products)
+
   console.log(categoryId)
 
   return (
@@ -74,7 +77,7 @@ export default function Home({categories}) {
             ))}
           </div>
           <div className={styles.productsSection}>
-              {selectedCategory.products.map((product) => (
+              {shuffledProducts.map((product) => (
                 <Product key={product.id} product={product} />
               ))}
           </div>

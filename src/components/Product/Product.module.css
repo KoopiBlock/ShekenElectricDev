@@ -7,13 +7,16 @@
   
   .product {
     margin:  1em 1em;
-    text-align: left;
+    text-align: right;
   }
   
   
   
   .title {
-    font-size: 2em;
+    font-size: 1.5em;
+    max-width: 15em;
+    
+    
   }
 
   .price {
@@ -24,7 +27,7 @@
   .ctaContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: right;
   }
 
   .ctaLink {

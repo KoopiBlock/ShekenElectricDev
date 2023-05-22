@@ -11,6 +11,7 @@ export default async function handler(_req, res) {
               id
               handle
               description
+              descriptionHtml
               title
               totalInventory
               variants(first: 5) {

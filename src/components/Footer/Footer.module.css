@@ -3,6 +3,7 @@
     background-image: linear-gradient(#293029, #272b27, #1e201e, #191A19);
     padding-top: 1em;
     margin-top: 2em;
+    overflow: hidden;
 }
 
 .footDiv {
@@ -39,21 +40,36 @@
 
 .LinksCont {
     display: flex;
-    flex-direction: row;
-    
-    
-   
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em 2em;
+    width: 80%;
+    overflow: hidden;
 }
 
 .supLinks {
     text-align: center;
-    margin: 1em 5em;
+    margin: auto;
     font-size: 1.2em;
+    color: #fff;
+    text-decoration: underline #4E9F3D;
+    cursor: pointer;
+}
+
+.SupContainer {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.SupIcon {
+    margin: auto;
+    font-size: 2.5em;
     color: #4E9F3D;
 }
 
 
-@media screen and (max-width: 602px) {
+@media screen and (max-width: 902px) {
     .LinksCont {
         display: flex;
         flex-direction: column;

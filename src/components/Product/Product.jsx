@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const Product = ({ product }) => {
 
-    console.log(product.variantId)
+    console.log(product)
 
     const formattedPrice = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -54,7 +54,7 @@ const Product = ({ product }) => {
     <div className={styles.product}>
       <Link href={`/product/${product.slug}`}>
         <Image src={product.imageSrc} alt={product.imageAlt} width={250} height={250} />
-        <h2>{product.title}</h2>
+        <h2 className={styles.title}>{product.title}</h2>
         <p className={styles.price}>{formattedPrice.format(product.price)}</p>
       </Link>
       <div className={styles.ctaContainer}>     

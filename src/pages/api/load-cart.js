@@ -20,8 +20,8 @@ export default async function handler(_req, res) {
 
     const data = await postToShopify({
         query: `
-        query GetCart($cartId: ID!) {
-          cart(id: $cartId) {
+        query GetCart($realCartId: ID!) {
+          cart(id: $realCartId) {
             checkoutUrl
             estimatedCost {
               totalAmount {
@@ -71,10 +71,11 @@ export default async function handler(_req, res) {
           }
         }
         `,
-        variables: { cartId },
+        variables: { realCartId },
       });
 
       console.log('hello there',data)
+      console.log('hello there2',realCartId)
     
     
     res.status(200).json({ body: data, query: cartId});
